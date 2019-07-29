@@ -1,0 +1,36 @@
+bg-height = 60vh
+bg-width = (bg-height * 4.7)
+steps = 7
+avatar-width = (bg-width / steps)
+
+.avatar-overlay
+    homePageContainer()
+
+    position fixed
+    top 0
+    right 0
+    left 0
+    width 100vw
+    height 100vh
+
+.avatar-container
+    width 'calc(100% - %s)' % avatar-width
+    height 100%
+
+.avatar
+    position absolute
+    bottom 0
+    width avatar-width
+    height bg-height
+    background url('../../assets/wave.png') no-repeat
+    background-size bg-width bg-height
+
+.animate
+    animation play 0.8s steps(steps) infinite alternate
+
+@keyframes play
+    from
+        background-position 0
+
+    to
+        background-position -(bg-width)
