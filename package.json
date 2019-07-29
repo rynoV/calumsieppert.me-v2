@@ -1,0 +1,81 @@
+{
+  "name": "default",
+  "private": true,
+  "description": "default",
+  "version": "0.1.0",
+  "author": "Calum Sieppert",
+  "dependencies": {
+    "gatsby": "^2.13.41",
+    "gatsby-image": "^2.2.7",
+    "gatsby-plugin-accessibilityjs": "^1.0.3",
+    "gatsby-plugin-manifest": "^2.2.4",
+    "gatsby-plugin-nprogress": "^2.1.2",
+    "gatsby-plugin-offline": "^2.2.4",
+    "gatsby-plugin-react-axe": "^0.2.2",
+    "gatsby-plugin-react-helmet": "^3.1.2",
+    "gatsby-plugin-react-svg": "^2.1.1",
+    "gatsby-plugin-robots-txt": "^1.5.0",
+    "gatsby-plugin-sharp": "^2.2.9",
+    "gatsby-plugin-sitemap": "^2.2.3",
+    "gatsby-plugin-stylus": "^2.1.2",
+    "gatsby-plugin-tslint": "0.0.2",
+    "gatsby-plugin-typescript": "^2.1.2",
+    "react": "16.9.0-alpha.0",
+    "react-dom": "16.9.0-alpha.0",
+    "react-helmet": "^6.0.0-beta",
+    "react-use-gesture": "latest",
+    "typographic": "^3.0.0"
+  },
+  "devDependencies": {
+    "@babel/plugin-proposal-class-properties": "^7.5.5",
+    "@babel/plugin-proposal-object-rest-spread": "^7.5.5",
+    "@babel/plugin-transform-object-assign": "^7.2.0",
+    "@babel/preset-env": "^7.5.5",
+    "@babel/preset-typescript": "^7.3.3",
+    "@testing-library/react": "^8.0.6",
+    "@types/jest": "^24.0.15",
+    "@types/react": "^16.8.23",
+    "@types/react-dom": "^16.8.5",
+    "@types/react-helmet": "^5.0.8",
+    "@types/typography": "^0.16.2",
+    "babel-jest": "^24.8.0",
+    "babel-loader": "^8.0.6",
+    "babel-preset-gatsby": "^0.2.8",
+    "jest": "^24.8.0",
+    "jest-dom": "^4.0.0",
+    "prettier": "^1.18.2",
+    "stylus-supremacy": "^2.12.7",
+    "ts-jest": "^24.0.2",
+    "ts-node": "^8.3.0",
+    "tslint": "^5.18.0",
+    "tslint-config-prettier": "^1.18.0",
+    "tslint-loader": "^3.5.4",
+    "tslint-plugin-prettier": "^2.0.1",
+    "tslint-react": "^4.0.0",
+    "ttypescript": "^1.5.7",
+    "typescript": "^3.5.3"
+  },
+  "keywords": [
+    "gatsby"
+  ],
+  "license": "MIT",
+  "scripts": {
+    "build": "gatsby build",
+    "clean-cache": "gatsby clean",
+    "develop": "yarn clean-cache && gatsby develop",
+    "format": "prettier --write src/**/*.{js,jsx}",
+    "lint": "tslint --project .",
+    "start": "gatsby develop",
+    "serve": "gatsby serve",
+    "test": "jest",
+    "type-check": "rm -rf node_modules/@types/react-native/ && tsc --noEmit",
+    "type-check:watch": "yarn type-check -- --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "default"
+  },
+  "bugs": {
+    "url": "default"
+  }
+}
