@@ -14,11 +14,16 @@ module.exports = {
   plugins     : [
     'gatsby-plugin-react-helmet',
     {
-      resolve: 'gatsby-plugin-stylus',
+      resolve: 'gatsby-plugin-stylus-resources',
       options: {
-        use: [typographic()],
+        use      : [typographic()],
+        resources: [
+          './src/styles/typographic.styl',
+          './src/styles/mixins.styl',
+        ],
       },
-    }, {
+    },
+    {
       resolve: 'gatsby-plugin-react-svg',
       options: {
         rule: {

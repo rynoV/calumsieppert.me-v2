@@ -17,7 +17,7 @@
     "gatsby-plugin-robots-txt": "^1.5.0",
     "gatsby-plugin-sharp": "^2.2.9",
     "gatsby-plugin-sitemap": "^2.2.3",
-    "gatsby-plugin-stylus": "^2.1.2",
+    "gatsby-plugin-stylus-resources": "^1.0.24",
     "gatsby-plugin-tslint": "0.0.2",
     "gatsby-plugin-typescript": "^2.1.2",
     "react": "16.9.0-alpha.0",
