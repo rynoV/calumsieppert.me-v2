@@ -2,14 +2,13 @@ const typographic = require('typographic')
 
 module.exports = {
   siteMetadata: {
-    title            : 'default',
-    description      : 'default',
-    titleTemplate    : 'default',
-    url              : 'https://www.gatsbyjs.org/',
-    siteUrl          : 'https://www.gatsbyjs.org/',
-    author           : 'default',
-    instagramUsername: 'default',
-    image            : 'default',
+    title        : 'Calum Sieppert',
+    description  : 'Personal website of freelance web developer Calum Sieppert',
+    titleTemplate: '%s · Calum Sieppert',
+    url          : 'https://www.calumsieppert.me/',
+    siteUrl      : 'https://www.calumsieppert.me/',
+    author       : 'Calum Sieppert',
+    image        : 'https://www.calumsieppert.me/favicon.png',
   },
   plugins     : [
     'gatsby-plugin-react-helmet',
@@ -67,18 +66,19 @@ module.exports = {
     {
       resolve: 'gatsby-plugin-manifest',
       options: {
-        name            : 'default',
-        short_name      : 'default',
-        start_url       : 'https://www.gatsbyjs.org/',
-        lang            : 'default',
-        background_color: 'default',
-        theme_color     : 'default',
-        display         : 'default',
+        name            : 'Calum Sieppert',
+        short_name      : 'Calum Sieppert',
+        start_url       : 'https://www.calumsieppert.me/',
+        lang            : 'en',
+        background_color: '#fff',
+        theme_color     : '#111',
+        display         : 'minimal-ui',
         icon            : 'static/favicon.png',
       },
     },
     'gatsby-plugin-offline',
     'gatsby-plugin-sitemap',
     'gatsby-plugin-robots-txt',
+    'gatsby-plugin-netlify',
   ],
 }

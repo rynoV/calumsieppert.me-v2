@@ -1,8 +1,3 @@
-bg-height = 60vh
-bg-width = (bg-height * 4.7)
-steps = 7
-avatar-width = (bg-width / steps)
-
 .avatar-overlay
     homePageContainer()
 
@@ -10,27 +5,89 @@ avatar-width = (bg-width / steps)
     top 0
     right 0
     left 0
+    z-index -1
     width 100vw
     height 100vh
-
-.avatar-container
-    width 'calc(100% - %s)' % avatar-width
-    height 100%
 
 .avatar
     position absolute
     bottom 0
-    width avatar-width
-    height bg-height
-    background url('../../assets/wave.png') no-repeat
-    background-size bg-width bg-height
 
-.animate
-    animation play 0.8s steps(steps) infinite alternate
+bg-height = 60vh
 
-@keyframes play
-    from
-        background-position 0
+.avatar-stand
+    bg-width = (bg-height / 2.8)
+    bg-avatars = 1
+    steps = 1
+    avatar-width = (bg-width / bg-avatars)
 
-    to
-        background-position -(bg-width)
+    width 'calc(100% - %s)' % avatar-width
+    height 100%
+
+    .avatar
+        width avatar-width
+        height bg-height
+        background url('../../assets/stand.png') no-repeat
+        background-size bg-width bg-height
+
+.avatar-wave
+    bg-width = (bg-height * 4.7)
+    bg-avatars = 7
+    steps = 7
+    avatar-width = (bg-width / bg-avatars)
+
+    width 'calc(100% - %s)' % avatar-width
+    height 100%
+
+    .avatar
+        width avatar-width
+        height bg-height
+        background url('../../assets/wave.png') no-repeat
+        background-size bg-width bg-height
+        animation wave 1.1s steps(steps) infinite alternate
+
+    @keyframes wave
+        from
+            background-position -(avatar-width * (bg-avatars - steps)) 0
+
+        to
+            background-position -(bg-width)
+
+.avatar-fall
+    bg-width = (bg-height * 3.96)
+    bg-avatars = 4
+    steps = 4
+    avatar-width = (bg-width / bg-avatars)
+
+    width 'calc(100% - %s)' % avatar-width
+    height 100%
+
+    .avatar
+        width avatar-width
+        height bg-height
+        background url('../../assets/fall.png') no-repeat
+        background-size bg-width bg-height
+        animation fall 0.7s steps(steps) infinite
+
+    @keyframes fall
+        from
+            background-position -(avatar-width * (bg-avatars - steps)) 0
+
+        to
+            background-position -(bg-width)
+
+.avatar-float
+    bg-height = (bg-height * 1.32)
+    bg-width = (bg-height / 2.11)
+    bg-avatars = 1
+    steps = 1
+    avatar-width = (bg-width / bg-avatars)
+
+    width 'calc(100% - %s)' % avatar-width
+    height 100%
+
+    .avatar
+        width avatar-width
+        height bg-height
+        background url('../../assets/float.png') no-repeat
+        background-size bg-width bg-height

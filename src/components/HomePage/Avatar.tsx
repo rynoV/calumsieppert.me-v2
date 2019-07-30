@@ -1,4 +1,4 @@
-import React, { EffectCallback, useEffect, useRef, useState } from 'react'
+import React, { EffectCallback, useEffect, useRef } from 'react'
 import { useScroll } from 'react-use-gesture'
 
 import { windowGlobal } from '/src/vars'
@@ -10,22 +10,47 @@ export function Avatar() {
     return null
   }
 
-  const [scrolling, setScrolling] = useState<boolean>(false)
+  const avatarContainerRef  = useRef<HTMLDivElement>(null)
+  const floatAnimTimeoutRef = useRef<NodeJS.Timeout>()
 
-  const avatarContainerRef = useRef<HTMLDivElement>(null)
-
-  function setTranslateX() {
+  function setAvatarClass(className: string) {
     if (avatarContainerRef.current) {
-      avatarContainerRef.current.style.transform = getCurrentTranslateX()
+      avatarContainerRef.current.className = className
+    }
+  }
+
+  function setAvatarTransform(translateYAmount: string = '0') {
+    if (avatarContainerRef.current) {
+      avatarContainerRef.current.style.transform
+        = `translate(${getCurrentTranslateXAmount()}, ${translateYAmount}`
+    }
+  }
+
+  function setAvatarTransition(transition: string) {
+    if (avatarContainerRef.current) {
+      avatarContainerRef.current.style.transition = transition
     }
   }
 
   const bind = useScroll(
-    ({ scrolling: newScrolling }) => {
-      setTranslateX()
+    ({ delta, last, first }) => {
+      setAvatarTransform(`${-delta[1]}px`)
 
-      if (newScrolling !== scrolling) {
-        setScrolling(newScrolling)
+      if (last) {
+        const transitionDurationMS = 2000
+
+        setAvatarTransform()
+        setAvatarTransition(`transform ${transitionDurationMS}ms`)
+        setAvatarClass(styles.avatarFloat)
+
+        floatAnimTimeoutRef.current = setTimeout(() => {
+          setAvatarClass(styles.avatarStand)
+        }, transitionDurationMS)
+      }
+
+      if (first) {
+        setAvatarTransition('unset')
+        setAvatarClass(styles.avatarFall)
       }
     },
     { domTarget: windowGlobal },
@@ -34,21 +59,28 @@ export function Avatar() {
   useEffect(bind, [bind])
 
   useEffect(() => {
-    setTranslateX()
+    setAvatarTransform()
+
+    return () => {
+      if (floatAnimTimeoutRef.current) {
+        clearTimeout(floatAnimTimeoutRef.current)
+      }
+    }
   }, [])
 
   return (
     <div className={styles.avatarOverlay}>
-      <div className={styles.avatarContainer} ref={avatarContainerRef}>
-        <div
-          className={`${styles.avatar} ${scrolling ? styles.animate : null}`}
-        />
+      <div
+        ref={avatarContainerRef}
+        className={styles.avatarWave}
+      >
+        <div className={styles.avatar} />
       </div>
     </div>
   )
 }
 
-function getCurrentTranslateX() {
+function getCurrentTranslateXAmount() {
   if (!windowGlobal) {
     return null
   }
@@ -56,5 +88,5 @@ function getCurrentTranslateX() {
   const b    = Math.PI / windowGlobal.innerHeight / 2
   const cosX = Math.cos(windowGlobal.pageYOffset * b)
 
-  return `translateX(${Math.abs(cosX) * 100}%)`
+  return `${Math.abs(cosX) * 100}%`
 }
