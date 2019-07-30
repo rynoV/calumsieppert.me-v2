@@ -23,7 +23,6 @@ export function SEO(props: IProps) {
           defaultDescription: description
           siteUrl: url
           defaultImage: image
-          instagramUsername
         }
       }
     }
@@ -52,7 +51,6 @@ export function PureSEO({
               defaultDescription,
               siteUrl,
               defaultImage,
-              instagramUsername,
             },
           },
         } = data
@@ -89,10 +87,6 @@ export function PureSEO({
       {seo.image && <meta property='og:image' content={seo.image} />}
 
       <meta name='instagram:card' content='summary_large_image' />
-
-      {instagramUsername && (
-        <meta name='instagram:creator' content={instagramUsername} />
-      )}
 
       {seo.title && <meta name='instagram:title' content={seo.title} />}
 
