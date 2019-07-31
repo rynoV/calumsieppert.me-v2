@@ -1,3 +1,6 @@
+bg-height = 50vh
+bg-width = 50vh
+
 .avatar-overlay
     homePageContainer()
 
@@ -6,17 +9,23 @@
     right 0
     left 0
     z-index -1
-    width 100vw
     height 100%
+
+.transform-width-container
+    avatar-width-offset = (-(bg-width / 3.6))
+
+    position absolute
+    top 0
+    right avatar-width-offset
+    bottom 0
+    left avatar-width-offset
 
 .avatar
     position absolute
     bottom 0
 
-bg-height = 60vh
-
 .avatar-stand
-    bg-width = (bg-height / 2.8)
+    bg-width = (bg-height * 0.998)
     bg-avatars = 1
     steps = 1
     avatar-width = (bg-width / bg-avatars)
@@ -31,7 +40,7 @@ bg-height = 60vh
         background-size bg-width bg-height
 
 .avatar-wave
-    bg-width = (bg-height * 4.7)
+    bg-width = (bg-height * 6.98)
     bg-avatars = 7
     steps = 7
     avatar-width = (bg-width / bg-avatars)
@@ -78,7 +87,7 @@ bg-height = 60vh
 
 .avatar-float
     bg-height = (bg-height * 1.32)
-    bg-width = (bg-height / 2.11)
+    bg-width = (bg-height * 0.755)
     bg-avatars = 1
     steps = 1
     avatar-width = (bg-width / bg-avatars)

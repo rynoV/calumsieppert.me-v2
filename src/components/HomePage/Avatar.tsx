@@ -11,6 +11,7 @@ export function Avatar() {
   }
 
   const avatarContainerRef  = useRef<HTMLDivElement>(null)
+  const avatarRef           = useRef<HTMLDivElement>(null)
   const floatAnimTimeoutRef = useRef<NodeJS.Timeout>()
 
   function setAvatarClass(className: string) {
@@ -86,8 +87,10 @@ export function Avatar() {
 
   return (
     <div className={styles.avatarOverlay}>
-      <div ref={avatarContainerRef} className={styles.avatarWave}>
-        <div className={styles.avatar} />
+      <div className={styles.transformWidthContainer}>
+        <div ref={avatarContainerRef} className={styles.avatarWave}>
+          <div ref={avatarRef} className={styles.avatar} />
+        </div>
       </div>
     </div>
   )
