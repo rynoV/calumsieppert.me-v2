@@ -1,5 +1,5 @@
-import React, { EffectCallback, useEffect, useRef } from 'react'
-import { useScroll } from 'react-use-gesture'
+import React, { useEffect, useRef } from 'react'
+import { useGesture } from 'react-use-gesture'
 
 import { windowGlobal } from '/src/vars'
 
@@ -32,29 +32,45 @@ export function Avatar() {
     }
   }
 
-  const bind = useScroll(
-    ({ delta, last, first }) => {
+  const bind = useGesture({
+    onScroll     : ({ delta }) => {
       setAvatarTransform(`${-delta[1]}px`)
+    },
+    onScrollStart: () => {
+      setAvatarClass(styles.avatarFall)
+    },
+    onScrollEnd  : ({ delta, velocity }) => {
+      if (delta[1] === 0) {
+        console.log(velocity)
 
-      if (last) {
-        const transitionDurationMS = 2000
+      }
+      const transitionDurationMS = 2000
 
-        setAvatarTransform()
-        setAvatarTransition(`transform ${transitionDurationMS}ms`)
+      setAvatarTransform()
+      setAvatarTransition(`transform ${transitionDurationMS}ms`)
+
+      const deltaY = delta[1]
+      /*
+       Float avatar if deltaY === 0 because on mobile this scroll handler
+       sometimes gets called multiple times with the original deltaY and a
+       deltaY that's equal to 0
+       */
+      if (Math.abs(deltaY) > 20 || deltaY === 0) {
         setAvatarClass(styles.avatarFloat)
+
+        if (floatAnimTimeoutRef.current) {
+          clearTimeout(floatAnimTimeoutRef.current)
+        }
 
         floatAnimTimeoutRef.current = setTimeout(() => {
           setAvatarClass(styles.avatarStand)
+          setAvatarTransition('unset')
         }, transitionDurationMS)
-      }
-
-      if (first) {
-        setAvatarTransition('unset')
-        setAvatarClass(styles.avatarFall)
+      } else {
+        setAvatarClass(styles.avatarStand)
       }
     },
-    { domTarget: windowGlobal },
-  ) as EffectCallback
+  }, { domTarget: windowGlobal })
 
   useEffect(bind, [bind])
 
@@ -70,10 +86,7 @@ export function Avatar() {
 
   return (
     <div className={styles.avatarOverlay}>
-      <div
-        ref={avatarContainerRef}
-        className={styles.avatarWave}
-      >
+      <div ref={avatarContainerRef} className={styles.avatarWave}>
         <div className={styles.avatar} />
       </div>
     </div>
