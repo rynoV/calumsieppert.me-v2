@@ -24,7 +24,7 @@
     "react": "16.9.0-alpha.0",
     "react-dom": "16.9.0-alpha.0",
     "react-helmet": "^6.0.0-beta",
-    "react-use-gesture": "latest",
+    "react-use-gesture": "^5.2.3",
     "typographic": "^3.0.0"
   },
   "devDependencies": {

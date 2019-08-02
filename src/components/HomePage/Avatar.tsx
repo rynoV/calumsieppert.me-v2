@@ -56,7 +56,7 @@ export function Avatar() {
        sometimes gets called multiple times with the original deltaY and a
        deltaY that's equal to 0
        */
-      if (Math.abs(deltaY) > 20 || deltaY === 0) {
+      if (Math.abs(deltaY) > 20) {
         setAvatarClass(styles.avatarFloat)
 
         if (floatAnimTimeoutRef.current) {
